@@ -316,7 +316,7 @@ public class Peashooter extends Frame {
         g2.fill(gp);
         
         //pea animation
-        int peaX = 400, peaY = 140, peaSizeX = 0, peaSizeY = 0;
+        int peaX = 400, peaY = 240, peaSizeX = 0, peaSizeY = 0;         //y originally 140
         
         try {
             Thread.sleep(1000L);
@@ -329,12 +329,12 @@ public class Peashooter extends Frame {
         //pea outline
         g2.setStroke(new BasicStroke(5));
         g2.setColor(outline);
-        g2.drawOval(peaX, peaY, 195, 150);
+        //g2.drawOval(peaX, peaY, 195, 150);
         
         for(;peaX<488; peaX+=5, peaY-=5, peaSizeX+=10, peaSizeY+=8) {
-            g2.setColor(Color.WHITE);
+        //    g2.setColor(Color.WHITE);
             //g2.drawOval(peaX-7, peaY-2, 200, 155);
-            g2.fillOval(peaX-8, peaY-5, 205, 160);
+        //    g2.fillOval(peaX-8, peaY-5, 205, 160);
             //g2.setPaint(new GradientPaint(570,112,new Color(225,235,131),195,150,new Color(138,181,31)));
             g2.setColor(new Color(151,202,0));
             g2.fillOval(peaX, peaY, peaSizeX, peaSizeY);    //size = 195, 150
@@ -344,6 +344,9 @@ public class Peashooter extends Frame {
                 Thread.sleep(10);
             } catch (InterruptedException ex) {}
         }
+        
+        g2.setColor(Color.WHITE);
+        g2.fillRect(400, 136, 120, 200);
         
         //mouth
         g2.setColor(outline);
@@ -403,14 +406,15 @@ public class Peashooter extends Frame {
         for(;peaX<810;peaX+=5) {
             g2.setColor(Color.WHITE);
             //g2.drawOval(peaX-7, peaY-2, 200, 155);
-            g2.fillOval(peaX-8, peaY-5, 205, 160);
+            //g2.fillOval(peaX-8, peaY-5, 205, 160);
+            g2.fillRect(480, 130, 600, 200);
             //g2.setPaint(new GradientPaint(570,112,new Color(225,235,131),195,150,new Color(138,181,31)));
             g2.setColor(new Color(151,202,0));
             g2.fillOval(peaX, peaY, 195, 150);
             g2.setColor(outline);
             g2.drawOval(peaX, peaY, 195, 150);
             try {
-                Thread.sleep(10);
+                Thread.sleep(5);
             } catch (InterruptedException ex) {}
             repaint();
         }
