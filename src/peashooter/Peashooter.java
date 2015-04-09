@@ -316,7 +316,7 @@ public class Peashooter extends Frame {
         g2.fill(gp);
         
         //pea animation
-        int peaX = 490, peaY = 130;
+        int peaX = 400, peaY = 140, peaSizeX = 0, peaSizeY = 0;
         
         try {
             Thread.sleep(1000L);
@@ -331,10 +331,79 @@ public class Peashooter extends Frame {
         g2.setColor(outline);
         g2.drawOval(peaX, peaY, 195, 150);
         
+        for(;peaX<488; peaX+=5, peaY-=5, peaSizeX+=10, peaSizeY+=8) {
+            g2.setColor(Color.WHITE);
+            //g2.drawOval(peaX-7, peaY-2, 200, 155);
+            g2.fillOval(peaX-8, peaY-5, 205, 160);
+            //g2.setPaint(new GradientPaint(570,112,new Color(225,235,131),195,150,new Color(138,181,31)));
+            g2.setColor(new Color(151,202,0));
+            g2.fillOval(peaX, peaY, peaSizeX, peaSizeY);    //size = 195, 150
+            g2.setColor(outline);
+            g2.drawOval(peaX, peaY, peaSizeX, peaSizeY);
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {}
+        }
+        
+        //mouth
+        g2.setColor(outline);
+        g2.rotate(Math.toRadians(15));      //15º
+        g2.setStroke(new BasicStroke(7));
+        g2.drawOval(396, 25, 122, 160);
+        
+        //mouth fill gradient
+        //g2.setColor(new Color(147,207,47));
+        g2.setPaint(new GradientPaint(400,140,(new Color(147,207,47)),400,28,(new Color(230,253,106))));
+        g2.fillOval(392, 28, 125, 155);
+        
+        //mouth fill
+        g2.setColor(new Color(147,207,47));
+        g2.fillOval(416, 38, 100, 140);
+        
+        //darkgreen mouth fill outline
+        g2.setColor(outline);
+        g2.fillOval(430, 50, 72, 110);
+        
+        //lighter green mouth fill
+        g2.setColor(new Color(102,153,0));      //lighter middle green
+        g2.fillOval(437, 54, 68, 102);
+        
+        //back to normal rotation
+        g2.rotate(Math.toRadians(-15));     //0º
+        //minus 60 for original coordinates
+        
+        //white mouth glare
+        gp = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
+        gp.moveTo(382, 170);
+        gp.quadTo(400, 140, 431, 147);
+        gp.curveTo(448, 150, 458, 162, 458, 162);
+        gp.quadTo(432, 136, 382, 170);
+        g2.setColor(Color.WHITE);
+        g2.fill(gp);
+        
+        //semi-white mouth glare bottom
+        gp = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
+        gp.moveTo(411, 279);
+        gp.quadTo(435, 285, 454, 258);
+        gp.quadTo(446, 290, 411, 279);
+        g2.setColor(new Color(216,248,103));
+        g2.fill(gp);
+        
+        //inner black mouth outline
+        g2.setStroke(new BasicStroke(1));
+        g2.setColor(Color.BLACK);
+        gp = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
+        gp.moveTo(414, 183);
+        gp.curveTo(454, 177, 442, 277, 398, 257);
+        gp.curveTo(380, 219, 406, 187, 414, 183);
+        gp.closePath();
+        g2.fill(gp);
+        
+        g2.setStroke(new BasicStroke(5));
         for(;peaX<810;peaX+=5) {
             g2.setColor(Color.WHITE);
-            g2.drawOval(peaX-7, peaY-2, 200, 155);
-            g2.fillOval(peaX-7, peaY-2, 200, 155);
+            //g2.drawOval(peaX-7, peaY-2, 200, 155);
+            g2.fillOval(peaX-8, peaY-5, 205, 160);
             //g2.setPaint(new GradientPaint(570,112,new Color(225,235,131),195,150,new Color(138,181,31)));
             g2.setColor(new Color(151,202,0));
             g2.fillOval(peaX, peaY, 195, 150);
@@ -343,9 +412,8 @@ public class Peashooter extends Frame {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException ex) {}
+            repaint();
         }
-        
-        repaint();
     }
 
     public static void main(String[] args) {
